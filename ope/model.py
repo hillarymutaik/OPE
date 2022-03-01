@@ -18,7 +18,7 @@ from keras.regularizers import l2
 from keras import losses
 from keras import optimizers
 from keras.callbacks import TensorBoard, ModelCheckpoint
-import ope.resnet50_mod as resnet
+import ope.resmode as resnet
 import math
 
 class transformer_loss(Layer):

@@ -14,7 +14,7 @@ sys.path.append("./ope_toolkit")
 
 
 if(len(sys.argv)!=4):
-    print("python3 ope_tool/5_evaluation_bop_basic.py [gpu_id] [cfg file] [dataset_name]")
+    print("python3 ope_tool/evaluation_bop.py [gpu_id] [cfg file] [dataset_name]")
     sys.exit()
     
 gpu_id = sys.argv[1]
@@ -24,17 +24,17 @@ os.environ['CUDA_VISIBLE_DEVICES'] = gpu_id
 gpu_rendering=False
 import tensorflow as tf
 from bop_toolkit_lib import inout
-from ope_tool import bop_io
-from ope_util import data_io as dataio
-from ope import ae_model as ae
+from ope_tool import bop
+from ope_util import data as dataio
+from ope import model as ae
 from ope import recognition as recog
 from ope_util.common_util import getXYZ,get_normal,get_bbox_from_mask
 
 if(gpu_rendering):
-    from render_ope.gpu_render import cuda_renderer
+    from render_ope.rendering_gpu import cuda_renderer
 else:
     from render_ope import utils as renderutil
-    from render_ope.renderer_xyz import Renderer
+    from render_ope.rendererp import Renderer
     from render_ope.model import Model3D
 
 import math
@@ -102,7 +102,7 @@ if detect_type=='rcnn':
     from mrcnn.config import Config
     from mrcnn import utils
     import mrcnn.model as modellib
-    from ope_tool.mask_rcnn_util import BopInferenceConfig
+    from ope_tool.maskrcnn_util import BopInferenceConfig
     from skimage.transform import resize
     def get_rcnn_detection(image_t,model):
         image_t_resized, window, scale, padding, crop = utils.resize_image(

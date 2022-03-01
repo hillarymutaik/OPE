@@ -11,7 +11,7 @@ sys.path.append("./ope_toolkit")
 
 
 from render_ope import utils as renderutil
-from render_ope.renderer_xyz import Renderer
+from render_ope.rendererp import Renderer
 from render_ope.model import Model3D
 
 import matplotlib.pyplot as plt
@@ -21,7 +21,7 @@ import time
 import cv2
 
 from bop_toolkit_lib import inout,dataset_params
-from ope_tool import bop_io
+from ope_tool import bop
 
 def get_sympose(rot_pose,sym):
     rotation_lock=False
@@ -98,7 +98,7 @@ def augment_inplane_gen(xyz_id,img,img_r,depth_rend,mask,isYCB=False,step=10):
 augment_inplane=30 
 if len(sys.argv)<3:
     print("render_ope 3d coordinate images using a converted ply file, format of 6D pose challange(http://cmp.felk.cvut.cz/sixd/challenge_2017/) can be used")
-    print("python3 ope_tool/2_2_render_pix2pose_training.py [cfg_fn] [dataset_name]")
+    print("python3 ope_tool/ope_training.py [cfg_fn] [dataset_name]")
 else:
     cfg_fn = sys.argv[1] #"cfg/cfg_bop2019.json"
     cfg = inout.load_json(cfg_fn)

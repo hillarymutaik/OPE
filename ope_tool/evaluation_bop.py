@@ -15,7 +15,7 @@ sys.path.append(ROOT_DIR)  # To find local version of the library
 sys.path.append("./ope_toolkit")
 
 if(len(sys.argv)!=4):
-    print("python3 ope_tool/5_evaluation_bop_basic.py [gpu_id] [cfg file] [dataset_name]")
+    print("python3 ope_tool/evaluation_bop.py [gpu_id] [cfg file] [dataset_name]")
     sys.exit()
     
 gpu_id = sys.argv[1]
@@ -24,9 +24,9 @@ if(gpu_id=='-1'):
 os.environ['CUDA_VISIBLE_DEVICES'] = gpu_id
 import tensorflow as tf
 from bop_toolkit_lib import inout
-from ope_tool import bop_io
-from ope_util import data_io as dataio
-from ope import ae_model as ae
+from ope_tool import bop
+from ope_util import data as dataio
+from ope import model as ae
 from ope import recognition as recog
 from ope_util.common_util import get_bbox_from_mask
 
@@ -40,7 +40,7 @@ if detect_type=='rcnn':
     from mrcnn.config import Config
     from mrcnn import utils
     import mrcnn.model as modellib
-    from ope_tool.mask_rcnn_util import BopInferenceConfig
+    from ope_tool.maskrcnn_util import BopInferenceConfig
     from skimage.transform import resize
     def get_rcnn_detection(image_t,model):
         image_t_resized, window, scale, padding, crop = utils.resize_image(

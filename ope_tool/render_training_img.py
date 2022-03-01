@@ -24,7 +24,7 @@ import numpy as np
 import time
 
 from bop_toolkit_lib import inout
-from ope_tool import bop_io
+from ope_tool import bop
 import copy
 
 #YCB(have to check) - > LMO

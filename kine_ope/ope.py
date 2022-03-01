@@ -18,7 +18,7 @@ sys.path.append(ROOT_DIR)  # To find local version of the library
 sys.path.append("./ope_toolkit")
 
 from bop_toolkit_lib import inout
-from ope_tool import bop_io
+from ope_tool import bop
 
 cfg_path_detection = "kine_ope/ros_config.json"
 cfg = inout.load_json(cfg_path_detection)
@@ -30,7 +30,7 @@ if detect_type=='rcnn':
     from mrcnn.config import Config
     from mrcnn import utils
     import mrcnn.model as modellib
-    from ope_tool.mask_rcnn_util import BopInferenceConfig
+    from ope_tool.maskrcnn_util import BopInferenceConfig
     
 #"/hsrb/head_rgbd_sensor/rgb/image_rect_color",
 

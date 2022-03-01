@@ -14,7 +14,7 @@ from skimage.transform import rescale, rotate
 sys.path.append(".")
 sys.path.append("./ope_toolkit")
 from bop_toolkit_lib import inout,dataset_params
-from ope_tool import bop_io
+from ope_tool import bop
 import warnings
 warnings.filterwarnings("ignore")
 import cv2

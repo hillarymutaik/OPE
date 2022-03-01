@@ -8,7 +8,7 @@ sys.path.append(".")
 sys.path.append("./ope_toolkit")
 import numpy as np
 from bop_toolkit_lib import inout
-from ope_tool import bop_io
+from ope_tool import bop
 
 from mrcnn.config import Config
 from mrcnn import utils
@@ -16,11 +16,11 @@ import mrcnn.model as modellib
 from mrcnn import visualize
 from mrcnn.model import log
 from imgaug import augmenters as iaa
-from ope_tool.mask_rcnn_util import BopDetectConfig,BopDataset
+from ope_tool.maskrcnn_util import BopDetectConfig,BopDataset
 import skimage
 
 if(len(sys.argv)!=3):
-    print("python3 ope_tool/1_2_train_maskrcnn.py [cfg_fn] [dataset]")
+    print("python3 ope_tool/train_maskrcnn.py [cfg_fn] [dataset]")
 cfg_fn = sys.argv[1] #"cfg/cfg_bop2019.json"
 cfg = inout.load_json(cfg_fn)
 dataset=sys.argv[2]
