@@ -1,14 +1,14 @@
 
 import os,sys
 sys.path.append(".")
-sys.path.append("./bop_toolkit")
+sys.path.append("./ope_toolkit")
 
 
 import math
 from plyfile import PlyData, PlyElement
 import numpy as np
 import itertools
-from tools import bop_io
+from ope_tool import bop_io
 from bop_toolkit_lib import inout,dataset_params
 from numpy.lib import recfunctions
 
@@ -66,7 +66,7 @@ def rmfield( a, *fieldnames_to_remove ):
     return a[ [ name for name in a.dtype.names if name not in fieldnames_to_remove ] ]
 
 if(len(sys.argv)<2):
-    print("python3 tools/2_1_ply_file_to_3d_coord_model.py [cfg_fn] [dataset_name]")
+    print("python3 ope_tool/2_1_ply_file_to_3d_coord_model.py [cfg_fn] [dataset_name]")
 
 cfg_fn =sys.argv[1]
 cfg = inout.load_json(cfg_fn)

@@ -1,5 +1,5 @@
 import keras
-from pix2pose_model import ae_model as ae
+from ope import ae_model as ae
 from keras import backend as K
 import numpy as np
 import cv2

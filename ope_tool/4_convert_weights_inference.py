@@ -7,11 +7,11 @@ from keras.models import Model
 
 sys.path.append(".")  # To find local version of the library
 
-from pix2pose_model import ae_model as ae
+from ope import ae_model as ae
 
 #find the last weight in each folder and convert it to the inference weights
 if(len(sys.argv)!=2 and len(sys.argv)!=3):
-    print("python3 tools/4_convert_weights_inference.py <weight_dir> < 1-(optional)to overwrite>")
+    print("python3 ope_tool/4_convert_weights_inference.py <weight_dir> < 1-(optional)to overwrite>")
 weight_dir = sys.argv[1]
 pass_exists=True
 if len(sys.argv)>2:

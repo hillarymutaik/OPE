@@ -5,7 +5,7 @@ import os,sys
 #MASKRCNN_DIR="/home/kiru/common_ws/Mask_RCNN_Mod/"
 #sys.path.append(MASKRCNN_DIR)
 #sys.path.append(".")
-#sys.path.append("./bop_toolkit")
+#sys.path.append("./ope_toolkit")
 import numpy as np
 from mrcnn.config import Config
 from mrcnn import utils

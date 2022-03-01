@@ -15,12 +15,12 @@ import tensorflow as tf_backend
 
 ROOT_DIR = os.path.abspath(".")
 sys.path.append(ROOT_DIR)  # To find local version of the library
-sys.path.append("./bop_toolkit")
+sys.path.append("./ope_toolkit")
 
 from bop_toolkit_lib import inout
-from tools import bop_io
+from ope_tool import bop_io
 
-cfg_path_detection = "ros_kinetic/ros_config.json"
+cfg_path_detection = "kine_ope/ros_config.json"
 cfg = inout.load_json(cfg_path_detection)
 
 detect_type = cfg['detection_pipeline']
@@ -30,7 +30,7 @@ if detect_type=='rcnn':
     from mrcnn.config import Config
     from mrcnn import utils
     import mrcnn.model as modellib
-    from tools.mask_rcnn_util import BopInferenceConfig
+    from ope_tool.mask_rcnn_util import BopInferenceConfig
     
 #"/hsrb/head_rgbd_sensor/rgb/image_rect_color",
 
@@ -41,8 +41,8 @@ if(int(cfg['icp'])==1):
     import trimesh
     import pyrender
 
-from pix2pose_model import recognition as recog
-from pix2pose_util.common_util import getXYZ,get_normal,get_bbox_from_mask
+from ope import recognition as recog
+from ope_util.common_util import getXYZ,get_normal,get_bbox_from_mask
 
 import argparse
 import time
@@ -117,7 +117,7 @@ class pix2pose():
                 self.obj_pix2pose.append(recog_temp)
                 ply_fn = os.path.join(self.cfg['model_dir'],self.cfg['ply_files'][t_id])               
                 if(self.icp):
-                    #for pyrender rendering
+                    #for pyrender render_ope
                     obj_model = trimesh.load_mesh(ply_fn)
                     obj_model.vertices  = obj_model.vertices*self.model_scale
                     mesh = pyrender.Mesh.from_trimesh(obj_model)

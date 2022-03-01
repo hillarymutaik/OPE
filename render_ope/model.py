@@ -45,7 +45,7 @@ class Model3D:
         self.bb = np.asarray(self.bb, dtype=np.float32)
         #self.diameter = max(pdist(self.bb, 'euclidean'))
 
-        # Set up rendering data
+        # Set up render_ope data
         if(color_type==0):
             colors = [[1, 0, 0],[1, 1, 0], [0, 1, 0], [0, 1, 1],
                       [0, 0, 1], [0, 1, 0], [0.5, 0, 0.5], [0, 0.5, 0.5]]

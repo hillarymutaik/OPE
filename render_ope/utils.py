@@ -11,7 +11,7 @@ from tqdm import tqdm
 #from scipy.linalg import expm3, norm
 from scipy.linalg import expm, norm
 
-from rendering.renderer import Renderer
+from render_ope.renderer import Renderer
 
 
 def draw_detections_2D(image, detections):
@@ -42,7 +42,7 @@ def draw_detections_3D(image, detections, cam, model_map):
         image: Numpy array, normalized to [0-1]
         detections: A list of detections for this image, coming from SSD.detect() in the form
             [l, t, r, b, name, confidence, 6D_pose0, ..., 6D_poseN]
-        cam: Intrinsics for rendering
+        cam: Intrinsics for render_ope
         model_map: Mapping of model name to Model3D instance {'obj': model3D}
 
     """
@@ -59,7 +59,7 @@ def draw_detections_3D(image, detections, cam, model_map):
             ren.draw_boundingbox(model, pose)
     col, dep = ren.finish()
 
-    # Copy the rendering over into the scene
+    # Copy the render_ope over into the scene
     mask = np.dstack((dep, dep, dep)) > 0
     out[mask] = col[mask]
     return out
@@ -117,7 +117,7 @@ def precompute_projections(views, inplanes, cam, model3D):
             # Render object and extract tight 2D bbox and projected 2D centroid
             ren.clear()
             ren.draw_model(model3D, pose)
-            box = np.argwhere(ren.finish()[1])  # Deduct bbox from depth rendering
+            box = np.argwhere(ren.finish()[1])  # Deduct bbox from depth render_ope
             box = [box.min(0)[1], box.min(0)[0], box.max(0)[1] + 1, box.max(0)[0] + 1]
             centroid = np.matmul(pose[:3, :3], model3D.centroid) + pose[:3, 3]
             centroid_x = cam[0, 2] + centroid[0] * cam[0, 0] / centroid[2]

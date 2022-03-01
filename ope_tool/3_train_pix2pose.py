@@ -3,7 +3,7 @@ import transforms3d as tf3d
 from math import radians
 
 if(len(sys.argv)!=6):
-    print("python3 tools/3_train_pix2pose.py <gpu_id> <cfg_fn> <dataset> <obj_id> <dir_to_background_imgs>")
+    print("python3 ope_tool/3_train_pix2pose.py <gpu_id> <cfg_fn> <dataset> <obj_id> <dir_to_background_imgs>")
     sys.exit()
 
 gpu_id = sys.argv[1]
@@ -14,11 +14,11 @@ os.environ['CUDA_VISIBLE_DEVICES'] = gpu_id
 
 ROOT_DIR = os.path.abspath(".")
 sys.path.append(ROOT_DIR)  # To find local version of the library
-sys.path.append("./bop_toolkit")
+sys.path.append("./ope_toolkit")
 
 from bop_toolkit_lib import inout,dataset_params
 
-from pix2pose_model import ae_model as ae
+from ope import ae_model as ae
 import matplotlib.pyplot as plt
 import time
 import random
@@ -35,8 +35,8 @@ from keras.models import Model
 from keras.utils import GeneratorEnqueuer
 from keras.layers import Layer
 
-from pix2pose_util import data_io as dataio
-from tools import bop_io
+from ope_util import data_io as dataio
+from ope_tool import bop_io
 
 def dummy_loss(y_true,y_pred):
     return y_pred

@@ -6,13 +6,13 @@ import os,sys
 
 ROOT_DIR = os.path.abspath(".")
 sys.path.append(ROOT_DIR) 
-sys.path.append("./bop_toolkit")
+sys.path.append("./ope_toolkit")
 
 
 
-from rendering import utils as renderutil
-from rendering.renderer_xyz import Renderer
-from rendering.model import Model3D
+from render_ope import utils as renderutil
+from render_ope.renderer_xyz import Renderer
+from render_ope.model import Model3D
 
 import matplotlib.pyplot as plt
 import transforms3d as tf3d
@@ -21,7 +21,7 @@ import time
 import cv2
 
 from bop_toolkit_lib import inout,dataset_params
-from tools import bop_io
+from ope_tool import bop_io
 
 def get_sympose(rot_pose,sym):
     rotation_lock=False
@@ -97,8 +97,8 @@ def augment_inplane_gen(xyz_id,img,img_r,depth_rend,mask,isYCB=False,step=10):
 
 augment_inplane=30 
 if len(sys.argv)<3:
-    print("rendering 3d coordinate images using a converted ply file, format of 6D pose challange(http://cmp.felk.cvut.cz/sixd/challenge_2017/) can be used")
-    print("python3 tools/2_2_render_pix2pose_training.py [cfg_fn] [dataset_name]")    
+    print("render_ope 3d coordinate images using a converted ply file, format of 6D pose challange(http://cmp.felk.cvut.cz/sixd/challenge_2017/) can be used")
+    print("python3 ope_tool/2_2_render_pix2pose_training.py [cfg_fn] [dataset_name]")
 else:
     cfg_fn = sys.argv[1] #"cfg/cfg_bop2019.json"
     cfg = inout.load_json(cfg_fn)
@@ -136,7 +136,7 @@ for m_id,model_id in enumerate(model_ids):
             print("During the training, discrete transform will be properly handled by transformer loss")
         if('symmetries_continuous' in keys):
             print(model_id,"is symmetric_continous")
-            print("During the rendering, rotations w.r.t to the symmetric axis will be ignored")
+            print("During the render_ope, rotations w.r.t to the symmetric axis will be ignored")
             sym_continous[:3] = m_info['symmetries_continuous'][0]['axis']
             sym_continous[3:]= m_info['symmetries_continuous'][0]['offset']
             print("Symmetric axis(x,y,z):", sym_continous[:3])

@@ -10,11 +10,11 @@ import transforms3d as tf3d
 
 ROOT_DIR = os.path.abspath(".")
 sys.path.append(ROOT_DIR)  # To find local version of the library
-sys.path.append("./bop_toolkit")
+sys.path.append("./ope_toolkit")
 
 
 if(len(sys.argv)!=4):
-    print("python3 tools/5_evaluation_bop_basic.py [gpu_id] [cfg file] [dataset_name]")
+    print("python3 ope_tool/5_evaluation_bop_basic.py [gpu_id] [cfg file] [dataset_name]")
     sys.exit()
     
 gpu_id = sys.argv[1]
@@ -24,18 +24,18 @@ os.environ['CUDA_VISIBLE_DEVICES'] = gpu_id
 gpu_rendering=False
 import tensorflow as tf
 from bop_toolkit_lib import inout
-from tools import bop_io
-from pix2pose_util import data_io as dataio
-from pix2pose_model import ae_model as ae
-from pix2pose_model import recognition as recog
-from pix2pose_util.common_util import getXYZ,get_normal,get_bbox_from_mask
+from ope_tool import bop_io
+from ope_util import data_io as dataio
+from ope import ae_model as ae
+from ope import recognition as recog
+from ope_util.common_util import getXYZ,get_normal,get_bbox_from_mask
 
 if(gpu_rendering):
-    from rendering.gpu_render import cuda_renderer
+    from render_ope.gpu_render import cuda_renderer
 else:
-    from rendering import utils as renderutil
-    from rendering.renderer_xyz import Renderer
-    from rendering.model import Model3D
+    from render_ope import utils as renderutil
+    from render_ope.renderer_xyz import Renderer
+    from render_ope.model import Model3D
 
 import math
 def render_obj(obj_m,rot,tra,cam_K,ren):
@@ -102,7 +102,7 @@ if detect_type=='rcnn':
     from mrcnn.config import Config
     from mrcnn import utils
     import mrcnn.model as modellib
-    from tools.mask_rcnn_util import BopInferenceConfig
+    from ope_tool.mask_rcnn_util import BopInferenceConfig
     from skimage.transform import resize
     def get_rcnn_detection(image_t,model):
         image_t_resized, window, scale, padding, crop = utils.resize_image(

@@ -12,14 +12,14 @@ import random
 from skimage.transform import rescale, rotate
 
 sys.path.append(".")
-sys.path.append("./bop_toolkit")
+sys.path.append("./ope_toolkit")
 from bop_toolkit_lib import inout,dataset_params
-from tools import bop_io
+from ope_tool import bop_io
 import warnings
 warnings.filterwarnings("ignore")
 import cv2
 import csv
-from pix2pose_util.common_util import get_bbox_from_mask
+from ope_util.common_util import get_bbox_from_mask
 
 def get_random_background(im_height,im_width,backfiles):
     back_fn = backfiles[int(random.random()*(len(backfiles)-1))]
@@ -45,7 +45,7 @@ cfg_fn = sys.argv[1]
 cfg = inout.load_json(cfg_fn)
 
 if(len(sys.argv)!=4 and len(sys.argv)!=3):
-    print("usage: python3 tools/1_1_scene_gen_for_detection.py [cfg_fn] [dataset] [mask=1(yes)/0(no),default:1]")
+    print("usage: python3 ope_tool/1_1_scene_gen_for_detection.py [cfg_fn] [dataset] [mask=1(yes)/0(no),default:1]")
     sys.exit(0)
     
 dataset = sys.argv[2]

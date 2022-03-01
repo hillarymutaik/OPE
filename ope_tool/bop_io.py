@@ -2,7 +2,7 @@ import numpy as np
 import json
 import os,sys
 sys.path.append(".")
-sys.path.append("./bop_toolkit")
+sys.path.append("./ope_toolkit")
 from bop_toolkit_lib import inout
 from bop_toolkit_lib import renderer
 

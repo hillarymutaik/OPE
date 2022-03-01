@@ -12,11 +12,11 @@ import os,sys
 
 ROOT_DIR = os.path.abspath(".")
 sys.path.append(ROOT_DIR)  
-sys.path.append("./bop_toolkit")
+sys.path.append("./ope_toolkit")
 
-from rendering import utils as renderutil
-from rendering.renderer import Renderer
-from rendering.model import Model3D
+from render_ope import utils as renderutil
+from render_ope.renderer import Renderer
+from render_ope.model import Model3D
 
 import matplotlib.pyplot as plt
 import transforms3d as tf3d
@@ -24,7 +24,7 @@ import numpy as np
 import time
 
 from bop_toolkit_lib import inout
-from tools import bop_io
+from ope_tool import bop_io
 import copy
 
 #YCB(have to check) - > LMO
